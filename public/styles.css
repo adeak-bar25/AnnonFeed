@@ -437,6 +437,8 @@ input:focus{
     translate: 0 2px ;
 }
 
+
+
 #help{
     line-height: 25px;
 }
@@ -591,6 +593,11 @@ button[disabled]:hover::after{
     margin: 5px 0;
 }
 
+#title{
+    cursor: default;
+    user-select: none;
+}
+
 /* Responsive */
 
 @media screen and (max-width: 1550px) {
@@ -613,12 +620,20 @@ button[disabled]:hover::after{
     #help h2::before{
         display: none;
     }
+    .hide-r{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 720px) {
     /* .white-bg{
         background-color: #ecebeb;
     } */
+
+    nav{
+        justify-content: unset;
+    }
+
     #home .container-full{
         width: 95vw;
     }
