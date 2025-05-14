@@ -1,0 +1,38 @@
+#sidebar-btn{
+    display:none;
+}
+
+
+@media screen and (max-width: 720px) {
+    nav #title{
+        /* justify-self:center; */
+    }
+
+
+    nav #menu #sidebar-btn{
+        display:flex;
+    }
+
+    nav #menu #sidebar-btn span{
+        transition: all .5s;
+    }
+
+    nav #menu .clicked span:first-child{
+        transform: rotate(-45deg);
+        translate: 0 8px;
+    }
+    nav #menu .clicked span:nth-child(2){
+        opacity: 0;
+    }
+    nav #menu .clicked span:last-child{
+        transform: rotate(45deg);
+        translate: 0 -8px;
+    }
+
+
+    nav #menu{
+        position: absolute;
+        right: 20px;
+        /* margin-left:auto; */
+    }
+}
