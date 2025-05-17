@@ -167,8 +167,8 @@ const generate = {
             </div>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/new">Buat Sesi Baru</a></li>
-                <li><a href="/login">Masuk Kembali</a></li>
+                <li class="desktop-only"><a href="/new">Buat Sesi Baru</a></li>
+                <li class="desktop-only"><a href="/login">Masuk Kembali</a></li>
                 <li><a href="/join">Bergabung</a></li>
                 <li><a href="/Help">Bantuan</a></li>
             </ul>
