@@ -48,7 +48,7 @@ app.post('/newsession', (req, res) => {
     const code = generate.eventCode();
     const accessCode = generate.randomHex();
     const passwordHash = generate.passwordHash(req.body.password);
-    jsonDB.events.push(generate.eventJSON(req.body.eventName, passwordHash, code, accessCode));
+    jsonDB.events.push(generate.eventJSON(htmlEscape(req.body.eventName), passwordHash, code, accessCode));
     fs.writeFile(jsonFilePath, JSON.stringify(jsonDB, null, 2), (err) => {if(err) console.log(err)});
     res.cookie('code', code, { maxAge: 86400000, httpOnly: true });
     res.cookie('access', accessCode, { maxAge: 86400000, httpOnly: true });
@@ -101,9 +101,9 @@ app.get('/feedback',(req, res) => {
 app.post('/feedback/send', (req, res) => {
     res.redirect('/thanks');
     const code = req.query.code;
-    let name = req.body.name == ""? "Anonim" : req.body.name;
+    let name = req.body.name == ""? "Anonim" : htmlEscape(req.body.name);
     const eventIndex = getEvent.index(code);
-    const feedbackMessage = generate.eventFeedback(name, req.body.feedback);
+    const feedbackMessage = generate.eventFeedback(name, htmlEscape(req.body.feedback));
     jsonDB.events[eventIndex].feedback.push(feedbackMessage)
     fs.writeFile(jsonFilePath, JSON.stringify(jsonDB, null, 2), (err) => {if(err) console.log(err)});
     
@@ -188,6 +188,12 @@ const getEvent = {
         const i = getEvent.index(code)
         return jsonDB.events[i].passwordHash
     }
+}
+
+function htmlEscape(text) {
+    return String(text)
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
 }
 
 app.listen(port, () => {
