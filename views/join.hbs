@@ -14,18 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info" />
 </head>
 <body class="white-bg">
-    <nav>
-        <div id="title"><h2><span class="name-1">Annon</span><span class="name-2">Feed</span></h2></div>
-        <div>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/new">Buat Sesi Baru</a></li>
-                <li><a href="/login">Masuk Kembali</a></li>
-                <li><a href="/join" id="here">Bergabung</a></li>
-                <li><a href="/Help">Bantuan</a></li>
-            </ul>
-        </div>
-    </nav>
+    {{{nav}}}
     <div class="container-full">
         <div class="login">
             <h1>Masuk<br> Ke Event <p id="for">*Untuk Peserta</p></h1>
@@ -50,10 +39,7 @@
             button.disabled = false;
         }
     })
-
-    document.getElementById('title').addEventListener('click', (e) => {
-        window.location.href='./'
-    })
 </script>
+<script src="script.js"></script>
 </body>
 </html>

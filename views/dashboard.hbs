@@ -16,19 +16,7 @@
 
 </head>
 <body id="dashboard">
-    <nav>
-        <div id="identity"><h2 id="title"><span class="name-1">Annon</span><span class="name-2">Feed</span></h2> <span id="page-title">Dashboard</span></div>
-        <div>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li class="hide-r"><a href="/new">Buat Sesi Baru</a></li>
-                <li class="hide-r"><a href="/login">Masuk Kembali</a></li>
-                <li class="hide-r"><a href="/join">Bergabung</a></li>
-                <li><a href="/Help">Bantuan</a></li>
-            </ul>
-        </div>
-    </nav>
-    
+    {{{nav}}}
     <div class="container">
             <section id="at-a-glance">
                     <h1 id="title">Dashboard</h1>
@@ -64,12 +52,7 @@
     </div>
 
 <script>
-    document.getElementById('title').addEventListener('click', (e) => {
-        window.location.href='./'
-    })
-
     const feedbackUrl = `${window.location.hostname}/feedback?code={{code}}`
-
 
     const qrCode = new QRCodeStyling({
         width: 180,
@@ -91,7 +74,6 @@
         }
     });
 
-    
     qrCode.append(document.getElementById("qr-canvas"));
 
     document.querySelector('span.download').addEventListener('click', (e) => {
@@ -103,5 +85,6 @@
     });
 
 </script>
+<script src="script.js"></script>
 </body>
 </html> 
