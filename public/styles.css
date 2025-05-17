@@ -27,6 +27,10 @@ body{
     margin-top: 75px;
 }
 
+#sidebar-btn{
+    display:none;
+}
+
 .name-1{
     color: #fff;
 }
@@ -49,7 +53,7 @@ nav{
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 200;
 }
 
 nav #identity{
@@ -665,9 +669,6 @@ button[disabled]:hover::after{
         
     }
     
-    nav div ul{
-        display: none;
-    }
 
     nav{
         justify-content: center;
@@ -745,6 +746,62 @@ button[disabled]:hover::after{
    
     #help .container-scroll section > p{
         margin-left:0 ;
+    }
+
+    nav{
+        transform: translateZ(2) ;
+    }
+
+
+    nav #menu #sidebar-btn{
+        display:flex;
+    }
+
+    nav #menu #sidebar-btn span{
+        transition: all .5s;
+    }
+
+    nav #menu .clicked span:first-child{
+        transform: rotate(-45deg);
+        translate: 0 8px;
+    }
+    nav #menu .clicked span:nth-child(2){
+        opacity: 0;
+    }
+    nav #menu .clicked span:last-child{
+        transform: rotate(45deg);
+        translate: 0 -8px;
+    }
+
+
+    nav #menu{
+        position: absolute;
+        right: 20px;
+        /* margin-left:auto; */
+    }
+    nav #menu ul{
+        position: fixed;
+        top: 58px;
+        right: 0;
+        bottom: 0;
+        width:100vw;
+        display: flex;
+        background-color: #ff8352;
+        flex-direction: column;
+        padding: 50px 20px 0 25px;
+        box-sizing: border-box;
+        transform: translateZ(1) ;
+        transform: translateX(100%) ;
+        transition: all .5s;
+        z-index: 150;
+        margin: 0;
+    }
+    nav #menu ul > li > a{
+        color: #000;
+    }
+
+    nav #menu ul.open{
+        transform: translateX(0);
     }
 
 }
