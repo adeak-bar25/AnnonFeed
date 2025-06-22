@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    {{!-- <link rel="stylesheet" href="styles.css"> --}}
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -13,23 +14,27 @@
     <title>Halaman Tidak Ditemukan | AnnonFeed</title>
 </head>
 <body>
-    <nav>
-        <div id="title"><h2><span class="name-1">Annon</span><span class="name-2">Feed</span></h2></div>
-        <div id="menu" style="display: flex">
-            <div id="sidebar-btn" style="flex-direction:column; align-self: center">
-                <span style="width: 23px; border-bottom: 2px solid white; margin: 3px; display:block"></span>
-                <span style="width: 23px; border-bottom: 2px solid white; margin: 3px; display:block"></span>
-                <span style="width: 23px; border-bottom: 2px solid white; margin: 3px; display:block"></span>
+    <nav class="navbar main-grad text-white flex flex-row items-center py-2 pl-2 gap-3 fixed inset-x-0">
+        <div id="title" class="brand order-2"><h2><span class="text-white">Annon</span><span class="">Feed</span></h2></div>
+        <div id="menu" class="order-1 h-fit">
+            <div id="hamburger-btn" class="hamburger-btn sm:hidden hover:bg-slate-100/15 px-1 rounded-sm">
+                <span class=""></span>
+                <span class=""></span>
+                <span class=""></span>
             </div>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/new">Buat Sesi Baru</a></li>
-                <li><a href="/login">Masuk Kembali</a></li>
-                <li><a href="/join">Bergabung</a></li>
-                <li><a href="/Help">Bantuan</a></li>
+            <ul id="sidebar" class="bg-[#6e3f2c] fixed left-0 w-[70%] rounded-r-lg transition-all [&_li:first-child]:mt-2 [&_li:not(:first-child)]:my-5 [&_li]:pl-3 [&_li]:text-lg h-dvh -translate-x-full">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/Help">Bantuan</a></li>
+                </ul> 
+                <ul>
+                    <li class=""><a href="/login">Login</a></li>
+                    <li class=""><a href="/new">Buat Sesi Baru</a></li>
+                    <li><a href="/join">Bergabung</a></li>
+                </ul>
             </ul>
         </div>
-    </nav>
+    </nav>`
     <div class="container-full">
         <h2>ERROR</h2>
         <p class="big">404</p>
@@ -37,6 +42,19 @@
         <button onclick="window.location.href='./'">Kembali ke Homepage</button>
     </div>
 
-<script src="script.js"></script>
+{{!-- <script src="script.js"></script> --}}
+<script>
+        const sidebar = document.getElementById('sidebar')
+
+        document.getElementById('hamburger-btn').addEventListener('click', (e) => {
+            e.currentTarget.classList.toggle('hamburger-btn-clicked');
+            sidebar.classList.toggle('sidebar-opened')
+        });
+
+        
+        sidebar.style.top = window.getComputedStyle(document.querySelector('nav.navbar'))['height']
+
+
+</script>
 </body>
 </html>

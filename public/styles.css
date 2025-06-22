@@ -45,7 +45,7 @@ nav{
     background: linear-gradient(to right, #22110a, #1e1227);
     background-color: #22110a;
     margin: 0;
-    padding: 3px 1%;
+    padding: 0 .8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,26 +77,46 @@ nav span#page-title{
     font-weight: normal;
 }
 
-nav ul{
+nav > #menu .primary{
+    color: #f8f9fa;
+    padding: 8px 12px;
+    border: 2px solid #f8f9fa;
+    border-radius: 5px; 
+} 
+
+
+
+nav > #menu ul{
     display: flex;
-    gap: 20px;
+    align-items: center;
 }
 
-nav ul > li{
-    list-style: none;;
+nav > #menu ul{
+    
 }
 
-nav li > a{
+nav > #menu ul > li{
+    display: inline-block;
+    height: fit-content;
+    padding: 0 10px;
+}
+
+nav li{
+    list-style: none;
+}
+
+nav > #menu ul li > a{
     text-decoration: none;
     color: #ffffff9f;
     transition: all .2s;
+    display: inline-block;
 }
 
-nav li > a#here{
+nav > #menu ul li > a#here{
     color: #fff
 }
 
-nav li > a:hover{
+nav > #menu ul li > a:hover{
     color: #f36f3b; 
 }
 
@@ -405,7 +425,8 @@ input:focus{
     font-size: 20px;
     padding: 10px 20px;
     margin: 0;
-    background-color: #5221708c;
+    background-color: #32153f;
+    z-index: 20;
 
 }
 
