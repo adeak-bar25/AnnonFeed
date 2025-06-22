@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer utilities{
+    .main-grad{
+        background: linear-gradient(to right, #22110a, #1e1227);
+    }
+}
+
+@layer components{
+    .brand{
+        @apply font-sans text-[1.6rem] font-bold [&_span:last-child]:text-main-orange;
+    }
+    .hamburger-btn{
+        @apply h-fit w-fit [&>*]:block [&>*]:my-[.319rem] [&>*]:border-b-[2.8px] [&>*]:w-5 [&>*]:border-slate-50 scale-110 [&>*]:rounded-sm [&>*]:transition-all [&>*]:duration-500 overflow-hidden;
+    }
+    .hamburger-btn-clicked{
+        @apply [&>span:first-child]:rotate-45 [&>span:first-child]:translate-y-[.37rem] [&>span:nth-child(2)]:-translate-x-[100%] [&>span:nth-child(2)]:opacity-0 [&>span:last-child]:-rotate-45 [&>span:last-child]:-translate-y-[.5rem];
+    }
+    .sidebar-opened{
+        @apply translate-x-0;
+    }
+}
