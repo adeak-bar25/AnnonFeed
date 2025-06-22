@@ -5,9 +5,16 @@
 @tailwind utilities;
 @tailwind components;
 
+
+@layer base{
+    body{
+        @apply font-sans;
+    }
+}
+
 @layer utilities{
     .main-grad{
-        background: linear-gradient(to right, #22110a, #1e1227);
+        background: linear-gradient(to right, #22110a, #1e1227, #550e7b);
     }
 }
 
@@ -23,5 +30,8 @@
     }
     .sidebar-opened{
         @apply translate-x-0;
+    }
+    .border-sep{
+        @apply border-l border-gray-100;
     }
 }
