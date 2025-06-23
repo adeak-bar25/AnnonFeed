@@ -1,11 +1,35 @@
-document.getElementById('title').addEventListener('click', (e) => {
-    window.location.href='./'
+document.querySelector('.logo').addEventListener('click', (e) => {
+    window.location.href = './'
 })
 
-const menu = document.querySelector('nav #menu ul')
+const sidebar = document.getElementById('sidebar')
+const navBar = document.querySelector('nav.navbar')
+const navBarHeight = window.getComputedStyle(navBar)['height']
+const hidder = document.getElementById('hider')
+const hamburgerBtn = document.getElementById('hamburger-btn')
 
-document.getElementById('sidebar-btn').addEventListener('click', (e) =>{
-    e.currentTarget.classList.toggle('clicked')
-    menu.classList.toggle('open')
-    // console.log(e.currentTarget)
+navBar.style.height = navBarHeight
+document.querySelector('.main').style.paddingTop = navBarHeight
+sidebar.style.top = navBarHeight
+hidder.style.top = navBarHeight
+
+
+hamburgerBtn.addEventListener('click', (e) => {
+    hidder.classList.toggle('hidden')
+    console.log(this)
+    hamburgerBtn.classList.toggle('hamburger-btn-clicked');
+    setTimeout(() => {
+        sidebar.classList.toggle('sidebar-opened')
+    }, 200)
+});
+
+hidder.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target)) {
+        hamburgerBtn.classList.toggle('hamburger-btn-clicked');
+        sidebar.classList.toggle('sidebar-opened')
+        setTimeout(() => {
+            hidder.classList.toggle('hidden')
+        }, 200)
+
+    }
 })

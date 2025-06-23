@@ -8,7 +8,25 @@
 
 @layer base{
     body{
-        @apply font-sans;
+        @apply font-sans bg-slate-950 text-slate-50 selection:bg-main-orange/70;
+    }
+
+    a.link{
+        @apply text-secondary-orange underline;
+    }
+
+    /* hide spinner on number input */
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
+
+    input{
+        @apply focus:outline-none;
     }
 }
 
@@ -16,11 +34,20 @@
     .main-grad{
         background: linear-gradient(to right, #22110a, #1e1227, #550e7b);
     }
+
+    .flex-col-center{
+        @apply flex flex-col justify-center;
+    }
+    
 }
 
 @layer components{
     .brand{
-        @apply font-sans text-[1.6rem] font-bold [&_span:last-child]:text-main-orange;
+        @apply font-sans [&_span:first-child]:text-white font-bold [&_span:last-child]:text-main-orange;
+    }
+
+    .main{
+        @apply min-h-dvh;
     }
     .hamburger-btn{
         @apply h-fit w-fit [&>*]:block [&>*]:my-[.319rem] [&>*]:border-b-[2.8px] [&>*]:w-5 [&>*]:border-slate-50 scale-110 [&>*]:rounded-sm [&>*]:transition-all [&>*]:duration-500 overflow-hidden;
@@ -33,5 +60,11 @@
     }
     .border-sep{
         @apply border-l border-gray-100;
+    }
+    .btn-main{
+        @apply block mx-auto mt-4 py-2 px-4 rounded-full bg-main-orange w-fit transition-all hover:bg-secondary-orange hover:scale-105;
+    }
+    .btn-square{
+        @apply block py-2 px-4 rounded-md bg-main-orange transition-all hover:bg-secondary-orange;
     }
 }
