@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -12,12 +12,10 @@
     <link rel="manifest" href="/site.webmanifest" />
     <title>Feedback | AnnonFeed</title>
 </head>
-<body id="help" class="marginbody" style="background-color: #1b1c1d;">
+<body>
     {{{nav}}}
-    <div class="container-scroll">
-        <section>
-            <h1 class="text-center">Pertanyaan Yang Sering Ditanyakan (FAQ)</h1>
-        </section>
+    <div class="main px-3 md:w-4/5 md:mx-auto text-lg max-md:text-base [&>section]:mb-5 [&_h2]:text-3xl max-md:[&_h2]:text-2xl [&_h2]:font-bold [&_h3]:text-xl [&_h3]:mt-0.5 [&_h3]:font-bold [&_ol]:list-decimal [&_ol]:ml-8 [&_a]:link">
+        <h1 class="text-5xl max-md:text-3xl font-bold mb-3">Pertanyaan Yang Sering Ditanyakan (FAQ)</h1>
         <section id="what">
             <h2>Apa Itu AnnonFeed?</h2>
             <p>AnnonFeed adalah Platform yang menyediakan layanan untuk panitia ataupun conference (Rapat, Workshop, dsb) untuk menerima feedback (untuk panitia) dan mengirim feedback (untuk peserta), baik secara anonim ataupun tidak.</p>
@@ -30,7 +28,6 @@
         <section id="how">
             <h2>Bagaimana cara menggunakan AnnonFeed?</h2>
             <p>Untuk cara menggunakan AnnonFeed, ikuti langkah berikut!. </p>
-            <p>* Note: Saat ini interface panitia hanya dapat diakses melalui desktop.</p>
             <div>
                 <h3>Sebagai Peserta</h3>
                 <ol>
@@ -54,10 +51,6 @@
             </div>
         </section>
         <section id="why">
-            <h2>Mengapa Saat Ini Panitia Hanya Dapat Menggunakan Desktop?</h2>
-            <p>Saat ini terdapat sedikit masalah pada dashboard admin, oleh karena itu panitia hanya bisa mengakses melalui desktop. Namun kami akan berusaha untuk memperbaiki masalah ini agar panitia dapat menggunakan mobile device.</p>
-        </section>
-        <section id="Dwhy">
             <h2>Mengapa Feedback Yang Baru Dikirim Tidak Muncul Di Dashboard?</h2>
             <p>Untuk Sekarang anda perlu menrefresh browser untuk melihat feedback yang baru saja dikirim, Karena AnnonFeed belum mengimplementasikan Real-time Page Rendering.</p>
         </section>

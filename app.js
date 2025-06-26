@@ -14,17 +14,17 @@ app.use(cookieParser());
 const jsonFilePath = './data/database.json';
 const jsonDB = JSON.parse(fs.readFileSync(jsonFilePath));
 
-app.get('/', (req, res) => generate.webPage(res, 'index'));
+app.get('/', (req, res) => generate.webPage(res, 'index', 'Home'));
 
-app.get('/new', (req, res) => generate.webPage(res, 'new'));
+app.get('/new', (req, res) => generate.webPage(res, 'new', 'Buat Sesi Baru'));
 
-app.get('/help', (req, res) => generate.webPage(res, 'help'));
+app.get('/help', (req, res) => generate.webPage(res, 'help', 'Bantuan'));
 
-app.get('/join', (req, res) => generate.webPage(res, 'join'));
+app.get('/join', (req, res) => generate.webPage(res, 'join', 'Masuk ke Event'));
 
-app.get('/login', (req, res) => generate.webPage(res, 'login'));
+app.get('/login', (req, res) => generate.webPage(res, 'login', 'Login'));
 
-app.get('/thanks', (req, res) => generate.webPage(res, 'thanks'))
+app.get('/thanks', (req, res) => generate.webPage(res, 'thanks', 'Terima Kasih'))
 
 app.get('/dashboard', (req, res) => {
     const i = getEvent.index(parseInt(req.query.code));
@@ -40,7 +40,7 @@ app.get('/dashboard', (req, res) => {
         fArray.push(f)
     });
     // res.render('dashboard', {code: req.query.code, eventName: jsonDB.events[getEvent.index(req.query.code)].eventName, fblength: jsonDB.events[i].feedback.length , feedback: fArray.join(' ')});
-    generate.webPage(res, 'dashboard', { code: req.query.code, eventName: jsonDB.events[getEvent.index(req.query.code)].eventName, fblength: jsonDB.events[i].feedback.length, feedback: fArray.join(' ') });
+    generate.webPage(res, 'dashboard', 'Dashboard', { code: req.query.code, eventName: jsonDB.events[getEvent.index(req.query.code)].eventName, fblength: jsonDB.events[i].feedback.length, feedback: fArray.join(' ') });
 });
 
 app.post('/newsession', (req, res) => {
@@ -63,7 +63,7 @@ app.post('/join', (req, res) => {
 
 app.post('/login', (req, res) => {
     const code = parseInt(req.body.code)
-    if (!getEvent.availableCode().includes(code)) return generate.webPage(res, 'login', { error: generate.errorHtml('Kode yang anda masukkan tidak ditemukan!') });
+    if (!getEvent.availableCode().includes(code)) return generate.webPage(res, 'login', 'Login', { error: generate.errorHtml('Kode yang anda masukkan tidak ditemukan!') });
     bcrypt.compare(req.body.password, getEvent.passwordHash(code), (err, result) => {
         if (err) console.log(err);
         if (result) {
@@ -78,7 +78,7 @@ app.post('/login', (req, res) => {
             res.redirect('/dashboard?code=' + code);
         } else {
             // res.render('login', {error: generate.errorHtml('Password yang anda masukkan salah!')});
-            generate.webPage(res, login, { error: generate.errorHtml('Password yang anda masukkan salah!') });
+            generate.webPage(res, login, 'Login', { error: generate.errorHtml('Password yang anda masukkan salah!') });
         }
     });
 });
@@ -86,16 +86,16 @@ app.post('/login', (req, res) => {
 app.get('/feedback', (req, res) => {
     if (req.query.code === NaN || req.query.code === undefined) {
         // return res.render('join', {error: generate.errorHtml("Masukkan Code terlebih dahulu")});
-        return generate.webPage(res, 'join', { error: generate.errorHtml("Masukkan Code terlebih dahulu") })
+        return generate.webPage(res, 'join', 'Masuk ke Event', { error: generate.errorHtml("Masukkan Code terlebih dahulu") })
     } else if (!getEvent.availableCode().includes(parseInt(req.query.code))) {
         // return res.render('join', {error : generate.errorHtml("Code yang anda masukkan salah!") });
-        return generate.webPage(res, 'join', { error: generate.errorHtml("Code yang anda masukkan salah!") })
+        return generate.webPage(res, 'join', 'Masuk ke Event', { error: generate.errorHtml("Code yang anda masukkan salah!") })
     }
     const code = parseInt(req.query.code);
     const eventIndex = getEvent.index(code);
     const eventName = jsonDB.events[eventIndex].eventName;
     // res.render('feedback', {eventName : eventName });
-    generate.webPage(res, 'feedback', { eventName: eventName })
+    generate.webPage(res, 'feedback', 'Event Feedback', { eventName: eventName })
 });
 
 app.post('/feedback/send', (req, res) => {
@@ -133,7 +133,7 @@ const generate = {
         }
     },
     eventFeedbackHtml: function (feedback, author) {
-        return `<div class='feedback'><div class="feedback-content">${feedback}</div> <div class="feedback-author">Ditulis Oleh <span id='author'>${author}</span></div></div>`
+        return `<div class="feedback"><div class="feedback-content">${feedback}</div><div class="feedback-author ">Ditulis Oleh <span class="author">${author}</span></div></div>`
     },
     errorHtml: function (errormessage) {
         return `<div class="error"> <span style="color: #ea3323;" class="material-symbols-outlined">info</span><p>${errormessage}</p></div>`
@@ -152,12 +152,12 @@ const generate = {
     passwordHash: function (pass) {
         return bcrypt.hashSync(pass, 10);
     },
-    webPage: function (res, htmlFile, data) {
-        const dataFinal = Object.assign({ nav: generate.navHtml }, data)
+    webPage: function (res, htmlFile, pageTitle, data) {
+        const dataFinal = Object.assign({ nav: generate.navHtml(pageTitle) }, data)
         return res.render(htmlFile, dataFinal)
     },
-    navHtml: function () {
-        return `<nav class="navbar main-grad text-white flex flex-row items-center pl-2 gap-3 fixed inset-x-0 justify-between">
+    navHtml: function (pageTitle) {
+        return `<nav class="navbar main-grad text-white flex flex-row items-center pl-2 gap-3 fixed inset-x-0 justify-between z-50">
         <div id="title" class="brand flex items-center gap-3">
             <div id="menu" class="h-fit">
                 <div id="hamburger-btn" class="hamburger-btn lg:hidden hover:bg-slate-100/15 px-1 rounded-sm">
@@ -182,14 +182,14 @@ const generate = {
             <h2 class="cursor-pointer logo select-none brand text-[1.6rem]"><span>Annon</span><span>Feed</span></h2>
             <div class="border-sep h-8 hidden lg:block"></div>
             <div class="text-base font-normal text-gray-300 items-center hover:text-white [&>div]:hover:border-white [&>div#arrow]:hover:translate-y-[0.18rem] relative [&>div#drop-nav]:hover:block pr-3 cursor-pointer hidden lg:block">
-                <span>Page title</span>
+                <span>${pageTitle}</span>
                 <div id="arrow" class="w-2 h-2 inline-block border-gray-300 border-r border-b rotate-45 -translate-y-0.5 transition-transform ml-2"></div>
                 <div id="drop-nav" class="absolute w-max py-3 bg-slate-800 text-slate-50 rounded-md -bottom-[11.6rem] hidden">
                     <ul class="[&>li]:py-1 [&>li:hover]:bg-slate-50/30 [&_a]:pl-3 [&_a]:pr-8 [&_a]:block [&_a]:w-full">
                         <li><a href="/">Home</a></li>
                         <li><a href="/help">Bantuan</a></li>
                         <li><a href="/login">Login</a></li>
-                        <li><a href="/create">Buat Sesi Baru</a></li>
+                        <li><a href="/new">Buat Sesi Baru</a></li>
                         <li><a href="join">Masukkan Code</a></li>
                     </ul>
                 </div> 
@@ -201,7 +201,7 @@ const generate = {
             <a href="/login" class="hover:text-slate-50/70 hover:underline hidden md:block">Login</a>
             <a href="/new" class="text-md py-1.5 px-2.5 rounded-[5px] border-2 border-gray-100 text-slate-50 my-3 hover:border-gray-50/70 hover:text-gray-50/70 hidden md:block">Buat Sesi Baru</a>
             <div class="border-sep h-12"></div>
-            <a href="/join" class="text-md py-1.5 px-2.5 rounded-[5px] border-2 border-gray-100 text-slate-50 my-3 hover:border-gray-50/70 hover:text-gray-50/70">Masukkan Kode</a>
+            <a href="/join" class="text-md py-1.5 px-2.5 rounded-[5px] border-2 border-gray-100 text-slate-50 my-3 hover:border-gray-50/70 hover:text-gray-50/70 max-xs:text-xs">Masukkan Kode</a>
         </div>
         
     </nav>`
