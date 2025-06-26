@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -11,13 +11,20 @@
     <meta name="apple-mobile-web-app-title" content="MyWebSite" />
     <link rel="manifest" href="/site.webmanifest" />
     <title>Terima Kasih | AnnonFeed</title>
+    
 </head>
 <body>
     {{{nav}}}
-    <div class="container-full">
-        <h2>Terima Kasih</h2>
+    <div class="main flex-col-center">
+        <div class="bg-green-500/80 p-5  ring-8 ring-green-400/15 w-fit h-fit flex justify-center items-center rounded-full mx-auto">
+            {{!-- Icon by Bootstrap icon --}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg w-12 h-12" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+            </svg>
+        </div>
+        <h2 class="text-center font-bold text-2xl mt-4">Terima Kasih</h2>
         <h3 class="text-center" style="margin: 20px 10px;">Feedback yang anda masukkan telah dikirim.</h3>
-        <button onclick="window.location.href='./'">Kembali ke Homepage</button>
+        <a href="/" class="btn-main mx-auto">Kembali ke Homepage</a>
     </div>
 
 <script src="script.js"></script>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -11,46 +12,76 @@
     <meta name="apple-mobile-web-app-title" content="MyWebSite" />
     <link rel="manifest" href="/site.webmanifest" />
     <title>Buat Sesi | AnnonFeed</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
-<body class="white-bg">
+
+<body>
     {{{nav}}}
-    <div class="container-full">
-        <div class="login">
-            <h1>Buat<br> Sesi Baru <p id="for">*Untuk Panitia</p></h1>
+    <div class="main px-6 md:flex-col-center animate-float-f-b">
+        <div class="mx-auto rounded-lg md:bg-gray-800 md:flex md:gap-12 md:p-6">
+            <div class="self-center">
+                <h1 class="text-6xl font-bold">Buat<br> Sesi Baru</h1>
+                <p class="text-lg mt-1 text-slate-200">*Untuk Panitia</p>
+            </div>
             <div>
-                <form id="sign-up" method="post" action="/newsession">
+                <form id="sign-up" method="post" action="/newsession" class="flex flex-col md:w-[22rem] lg:w-[26rem]">
+                    <p class="font-medium text-lg mt-2 mb-3 md:mb-1">Buat sesi baru untuk event anda!</p>
                     <label for="event-name">Nama Event</label>
-                    <input type="text" required id="event-name" name="eventName" placeholder="Workshop...">
-                    <label for="password">Buat Password</label>
-                    <input type="password" id="password" name="password" placeholder="Masukkan password...">
-                    <label for="conf-pass">Konfirmasi Password</label>
-                    <input type="password" id="conf-pass" placeholder="Konfirmasi Password">
-                    <p>Sudah Membuat Sesi? Login <a href="/login">Disini!</a></p>
-                    <button disabled type="submit">Buat Sesi</button>
+                    <input type="text" required id="event-name" name="eventName" class="input-main"
+                        placeholder="Workshop...">
+                    <label for="password">
+                        <p>Buat Password</p>
+                        <div class="w-full flex flex-row">
+                            <input type="password" required id="password" name="password" class="input-main w-full"
+                                placeholder="Masukkan password...">
+                            <span class="see-pass self-center ml-4 -translate-x-[2px]"><i
+                                    class="bi bi-eye text-xl block"></i></span>
+                        </div>
+                    </label>
+                    <label for="conf-pass">
+                        <p>Konfirmasi Password</p>
+                        <div class="w-full flex flex-row">
+                            <input type="password" required id="conf-pass" class="input-main w-full"
+                                placeholder="Konfirmasi Password">
+                            <span class="see-pass self-center ml-4 -translate-x-[2px]"><i
+                                    class="bi bi-eye text-xl block"></i></span>
+                        </div>
+                    </label>
+                    <p id="info" class="mb-2 hidden text-red-500">Password tidak sama!</p>
+                    <p>Sudah Membuat Sesi? Login <a href="/login" class="link">Disini!</a></p>
+                    <button disabled type="submit" class="btn-main">Buat Sesi</button>
                 </form>
             </div>
         </div>
     </div>
-    <div id="popup">
-        <div id="info">
-            <h2>Maaf</h2>
-            <p>Untuk saat ini, halaman ini hanya tersedia di desktop.</p>
-            <a href="/"><button>Kembali Ke Homepage</button></a>
-        </div>
-    </div>
 
-<script>
-    const form = document.getElementById('sign-up');
-    const button = document.querySelector('form > button');
+    <script>
+        const form = document.getElementById('sign-up');
+        const button = document.querySelector('form > button');
 
-    form.elements['conf-pass'].addEventListener('input', (e) => {
-        if(form.elements['password'].value !== form.elements['conf-pass'].value){
-            button.disabled = true;
-        }else{
-            button.disabled = false;
-        }
-    })
-</script>
-<script src="script.js"></script>
+        form.elements['conf-pass'].addEventListener('input', (e) => {
+            if (form.elements['password'].value !== form.elements['conf-pass'].value) {
+                button.disabled = true;
+                document.getElementById('info').style.display = 'block';
+            } else {
+                button.disabled = false;
+                document.getElementById('info').style.display = 'none';
+            }
+        })
+
+        Array.from(document.getElementsByClassName('see-pass')).forEach(btn => {
+            btn.addEventListener('click', function () {
+                if (this.previousElementSibling.type === 'password') {
+                    this.previousElementSibling.type = 'text'
+                    this.firstChild.classList.replace('bi-eye', 'bi-eye-slash')
+                } else {
+                    this.previousElementSibling.type = 'password'
+                    this.firstChild.classList.replace('bi-eye-slash', 'bi-eye')
+                }
+            })
+        });
+    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>

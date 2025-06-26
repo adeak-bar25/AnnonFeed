@@ -18,23 +18,24 @@
 
 <body class="white-bg">
     {{{nav}}}
-    <div class="main px-6 md:flex-col-center">
-        <div class="max-md:mt-4 md:w-fit mx-auto rounded-md md:pl-[1.95rem] md:pr-[2.1rem] md:pt-7 md:bg-gray-800">
-            <div class="md:w-fit md:mx-auto">
-                <h1 class="text-6xl font-bold md:text-center">Masuk<br class="md:hidden"> Ke Event</h1>
-                <p class="text-lg mt-1 text-slate-200 md:text-center">*Untuk Peserta</p>
+    <div class="main px-6 md:flex-col-center animate-float-f-b">
+        <div class="mx-auto rounded-lg md:bg-gray-800 md:flex md:gap-12 md:p-6">
+            <div class="self-center">
+                <h1 class="text-6xl font-bold">Masuk<br> Ke Event</h1>
+                <p class="text-lg mt-1 text-slate-200">*Untuk Peserta</p>
             </div>
             <div>
                 <form id="sign-up" method="post" action="/join">
                     {{{error}}}
-                    <p class="font-medium text-lg mt-2 md:mt-5 mb-3 md:text-center">Masukkan Kode 6 Digit Yang Diberikan oleh Panitia
+                    <p class="font-medium text-lg mt-2 mb-3 md:mb-1">Masukkan Kode 6 Digit Yang Diberikan oleh Panitia
                     </p>
-                    <label for="code" class="my-5 pt-2 pb-4 block auto w-full">
+                    <label for="code" class="my-5 md:my-2 pt-2 pb-4 block auto w-full md:mt-4">
                         <input type="number"
-                            class="bg-transparent border-white border-2 focus:outline-none block w-full md:w-[35%] mx-auto text-[40px] text-center rounded-md font-bold tracking-[.3rem] py-2 md:my-5 min-w-56"
+                            class="block w-full md:w-[35%] text-[40px] text-center rounded-md font-bold tracking-[.3rem] py-2 min-w-56"
                             id="code" name="code" max="999999" placeholder="______">
+                            <p id="error-input" class="mt-2 text-red-500 hidden">Code Event berjumlah 6 (enam) digit!</p>
                         <button disabled type="submit" id="button-code"
-                            class="btn-square w-full mt-5 md:mt-7 md:mx-auto">Lanjutkan</button>
+                            class="btn-main">Lanjutkan</button>
                     </label>
                 </form>
             </div>
@@ -45,15 +46,20 @@
         const code = document.getElementById('code')
         const button = document.querySelector('#button-code')
         code.addEventListener('input', (e) => {
+            code.value = code.value.replace('e', '')
             if (code.value.length < 6 || code.value.length === 0) {
                 button.disabled = true;
-                if (code.value.length !== 0) code.style.borderColor = '#cf0909';
+                if (code.value.length !== 0) {
+                    code.style.borderColor = '#cf0909'
+                    document.getElementById('error-input').classList.remove('hidden')
+                };
             } else if (code.value.length > 6) {
                 code.value = code.value.slice(0, 6);
             }
             else {
                 button.disabled = false;
                 code.style.borderColor = '#03c203';
+                document.getElementById('error-input').classList.add('hidden')
             }
         })
     </script>
