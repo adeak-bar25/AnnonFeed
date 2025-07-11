@@ -18,7 +18,6 @@ const jsonDB = function(){
     return JSON.parse(fs.readFileSync(jsonFilePath))
 };
 
-// console.log(jsonDB().events)
 
 app.get('/', (req, res) => generate.webPage(res, 'index', 'Home'));
 
@@ -33,7 +32,6 @@ app.get('/login', (req, res) => generate.webPage(res, 'login', 'Login'));
 app.get('/thanks', (req, res) => generate.webPage(res, 'thanks', 'Terima Kasih'))
 
 app.get('/dashboard', (req, res) => {
-    console.log(parseInt(req.query.code))
     const i = getEvent.index(parseInt(req.query.code));
     if (parseInt(req.cookies.code) !== parseInt(req.query.code)) {
         return res.redirect('/login')
@@ -73,13 +71,14 @@ app.post('/login', (req, res) => {
     const code = parseInt(req.body.code)
     if (!getEvent.availableCode().includes(code)) return generate.webPage(res, 'login', 'Login', { error: generate.errorHtml('Kode yang anda masukkan tidak ditemukan!') });
     bcrypt.compare(req.body.password, getEvent.passwordHash(code), (err, result) => {
-        if (err) console.log(err);
+        if (err) console.err(err);
         if (result) {
             const accessCode = generate.randomHex();
             const eventIndex = getEvent.index(code);
             res.clearCookie('code'); res.clearCookie('access');
-            jsonDB().events[eventIndex].access = accessCode;
-            fs.writeFile(jsonFilePath, JSON.stringify(jsonDB(), null, 2));
+            const curr = jsonDB()
+            curr.events[eventIndex].access = accessCode;
+            fs.writeFileSync(jsonFilePath, JSON.stringify(curr, null, 2));
 
             res.cookie('code', code, { maxAge: 86400000, httpOnly: true });
             res.cookie('access', accessCode, { maxAge: 86400000, httpOnly: true });
@@ -107,20 +106,20 @@ app.get('/feedback', (req, res) => {
 });
 
 app.post('/feedback/send', (req, res) => {
-    res.redirect('/thanks');
     const code = req.query.code;
     let name = req.body.name == "" ? "Anonim" : htmlEscape(req.body.name);
-    const eventIndex = getEvent.index(code);
     const feedbackMessage = generate.eventFeedback(name, htmlEscape(req.body.feedback));
-    jsonDB().events[eventIndex].feedback.push(feedbackMessage)
+    const eventIndex = getEvent.index(code);
+    const curr = jsonDB()
+    curr.events[eventIndex].feedback.push(feedbackMessage)
     try{
-        fs.writeFile(jsonFilePath, JSON.stringify(jsonDB(), null, 2));
+        fs.writeFileSync(jsonFilePath, JSON.stringify(curr, null, 2));
     }catch(err){
         throw err
     }
+    res.redirect('/thanks');
 
 
-    if (req.body.name.length === 0) name = 'Anonymous';
 
 })
 

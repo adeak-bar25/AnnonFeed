@@ -660,6 +660,10 @@ i {
   z-index: 10;
 }
 
+.z-50{
+  z-index: 50;
+}
+
 .-m-1{
   margin: -0.25rem;
 }
@@ -671,6 +675,11 @@ i {
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
+}
+
+.my-2{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .my-3{
@@ -686,11 +695,6 @@ i {
 .my-6{
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-}
-
-.my-2{
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .mb-2{
@@ -882,6 +886,10 @@ i {
   justify-content: space-between;
 }
 
+.gap-2{
+  gap: 0.5rem;
+}
+
 .gap-3{
   gap: 0.75rem;
 }
@@ -892,10 +900,6 @@ i {
 
 .gap-4{
   gap: 1rem;
-}
-
-.gap-2{
-  gap: 0.5rem;
 }
 
 .self-center{
@@ -989,6 +993,10 @@ i {
   background-color: rgb(34 197 94 / 0.8);
 }
 
+.bg-red-500\/40{
+  background-color: rgb(239 68 68 / 0.4);
+}
+
 .bg-secondary-orange{
   --tw-bg-opacity: 1;
   background-color: rgb(255 131 82 / var(--tw-bg-opacity, 1));
@@ -1010,10 +1018,6 @@ i {
 
 .bg-transparent{
   background-color: transparent;
-}
-
-.bg-red-500\/40{
-  background-color: rgb(239 68 68 / 0.4);
 }
 
 .p-1{
@@ -1415,6 +1419,32 @@ i {
   border-color: rgb(255 131 82 / var(--tw-border-opacity, 1));
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.feedback-content{
+  margin-left: 0.125rem;
+  margin-bottom: 0.25rem;
+}
+
+.feedback-author{
+  display: inline-flex;
+  align-items: center;
+}
+
+.feedback-author::before{
+  margin-right: 0.5rem;
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 9999px;
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 111 59 / var(--tw-bg-opacity, 1));
+}
+
+.feedback-author > .author{
+  margin-left: 0.25rem;
+  font-weight: 700;
 }
 
 .hover\:scale-105:hover{
