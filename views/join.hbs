@@ -1,21 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join | AnnonFeed</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info" />
+    {{{head}}}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info" />
 </head>
-
 <body class="white-bg">
     {{{nav}}}
     <div class="main px-6 md:flex-col-center animate-float-f-b">
@@ -30,19 +18,15 @@
                     <p class="font-medium text-lg mt-2 mb-3 md:mb-1">Masukkan Kode 6 Digit Yang Diberikan oleh Panitia
                     </p>
                     <label for="code" class="my-5 md:my-2 pt-2 pb-4 block auto w-full md:mt-4">
-                        <input type="number"
-                            class="block w-full md:w-[35%] text-[40px] text-center rounded-md font-bold tracking-[.3rem] py-2 min-w-56"
-                            id="code" name="code" max="999999" placeholder="______">
+                        <input type="number" class="block w-full md:w-[35%] text-[40px] text-center rounded-md font-bold tracking-[.3rem] py-2 min-w-56" id="code" name="code" max="999999" placeholder="______">
                             <p id="error-input" class="mt-2 text-red-500 hidden">Code Event berjumlah 6 (enam) digit!</p>
-                        <button disabled type="submit" id="button-code"
-                            class="btn-main">Lanjutkan</button>
+                        <button disabled type="submit" id="button-code" class="btn-main">Lanjutkan</button>
                     </label>
                 </form>
             </div>
         </div>
     </div>
     <script>
-
         const code = document.getElementById('code')
         const button = document.querySelector('#button-code')
         code.addEventListener('input', (e) => {
@@ -63,7 +47,6 @@
             }
         })
     </script>
-    <script src="script.js"></script>
+{{{script}}}
 </body>
-
 </html>

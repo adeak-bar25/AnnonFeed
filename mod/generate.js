@@ -46,8 +46,20 @@ const generate = {
         return bcrypt.hashSync(pass, 10);
     },
     webPage: function (res, htmlFile, pageTitle, data) {
-        const dataFinal = Object.assign({ nav: generate.navHtml(pageTitle) }, data)
+        const dataFinal = Object.assign({head: generate.headHtml(pageTitle) , nav: generate.navHtml(pageTitle), script: generate.uniScript() }, data)
         return res.render(htmlFile, dataFinal)
+    },
+    headHtml: function(pageTitle){
+        return `    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="css/style.css">
+                    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+                    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+                    <link rel="shortcut icon" href="/favicon.ico" />
+                    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+                    <link rel="manifest" href="/site.webmanifest" />
+                    <title>${pageTitle} | AnnonFeed</title>`
     },
     navHtml: function (pageTitle) {
         return `<nav class="navbar main-grad text-white flex flex-row items-center pl-2 gap-3 fixed inset-x-0 justify-between z-50">
@@ -98,6 +110,9 @@ const generate = {
         </div>
         
     </nav>`
+    },
+    uniScript: function(){
+        return `<script src="script.js"></script>`
     }
 }
 
