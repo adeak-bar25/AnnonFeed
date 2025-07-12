@@ -1,35 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <meta name="apple-mobile-web-app-title" content="MyWebSite">
-    <link rel="manifest" href="/site.webmanifest">
-    <title>Dashboard | AnnonFeed</title>
+    {{{head}}}
     <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=check,close,content_copy,download" />
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=check,close,content_copy,download" />
 </head>
-
 <body>
     {{{nav}}}
     <div class="main">
-        <section id="at-a-glance"
-            class="bg-secondary-orange pt-1 px-3 text-slate-950 pb-3 md:grid md:grid-rows-3 md:grid-cols-2 md:grid-flow-row">
+        <section id="at-a-glance" class="bg-secondary-orange pt-1 px-3 text-slate-950 pb-3 md:grid md:grid-rows-3 md:grid-cols-2 md:grid-flow-row">
             <h1 id="title" class="text-4xl font-bold">Dashboard</h1>
             <div class="my-3 md:row-start-2 md:col-start-1">
                 <h4 class="text-lg font-bold">Nama Event :</h4>
                 <h1 id="event-name" class="text-3xl font-bold">{{eventName}}</h1>
             </div>
-            <div
-                class="flex flex-col md:flex-row md:[&>*]:px-4 [&>*:first-child]:pl-0 max-md:[&>*]:py-2 w-fit h-fit mb-3 md:row-start-3 md:col-start-1">
+            <div class="flex flex-col md:flex-row md:[&>*]:px-4 [&>*:first-child]:pl-0 max-md:[&>*]:py-2 w-fit h-fit mb-3 md:row-start-3 md:col-start-1">
                 <div class="max-md:border-b md:border-r border-slate-50">
                     <h4 class="text-sm font-bold">Code :</h4>
                     <h1 class="text-2xl font-bold">{{code}}</h1>
@@ -39,20 +24,14 @@
                     <h1 class="text-2xl font-bold">{{fblength}}</h1>
                 </div>
             </div>
-            <button type="button" id="show-qr"
-                class="block md:hidden py-2 px-4 rounded-full bg-slate-950 w-max transition-all text-slate-50 hover:scale-105 mb-4">Lihat
-                Qr code</button>
-            <div id="qr-container"
-                class="fixed inset-1 z-10 -m-1 bg-black/65 justify-center items-center hidden md:flex md:justify-end md:static md:bg-transparent md:row-span-3">
+            <button type="button" id="show-qr" class="block md:hidden py-2 px-4 rounded-full bg-slate-950 w-max transition-all text-slate-50 hover:scale-105 mb-4">Lihat Qr code</button>
+            <div id="qr-container" class="fixed inset-1 z-10 -m-1 bg-black/65 justify-center items-center hidden md:flex md:justify-end md:static md:bg-transparent md:row-span-3">
                 <div id="qr-box" class=" bg-slate-800 text-slate-50 w-fit p-3 rounded-md">
-                    <div class="material-symbols-rounded cursor-pointer md:!hidden"><span id="close-popup"
-                            class="hover:bg-slate-50/30 rounded-full p-1">close</span></div>
+                    <div class="material-symbols-rounded cursor-pointer md:!hidden"><span id="close-popup" class="hover:bg-slate-50/30 rounded-full p-1">close</span></div>
                     <div id="qr-canvas" class="m-2 bg-[#e4eff8] p-2 rounded-md"></div>
                     <div id="qr-opt" class="text-center [&>*:hover]:bg-slate-50/30 [&>*]:rounded-full [&>*]:p-2">
-                        <span class="material-symbols-rounded btn download cursor-pointer"
-                            title="Download">download</span>
-                        <span class="material-symbols-rounded btn copy-link cursor-pointer"
-                            title="Copy Feedback Link to Clipboard">content_copy</span>
+                        <span class="material-symbols-rounded btn download cursor-pointer" title="Download">download</span>
+                        <span class="material-symbols-rounded btn copy-link cursor-pointer" title="Copy Feedback Link to Clipboard">content_copy</span>
                     </div>
                 </div>
             </div>
@@ -60,42 +39,17 @@
         <div class="scroll-container">
             <div id="scroll-container-header" class="bg-[#321540] px-3 py-1 pt-2 sticky">
                 <h3 class="text-xl font-bold">Feedback</h3>
-                <p id="info" style="font-size: 13px; margin: 2px 0 5px 0; color: #ffffffa4; ">*Refresh Page Untuk
-                    Memperbarui</p>
+                <p id="info" style="font-size: 13px; margin: 2px 0 5px 0; color: #ffffffa4; ">*Refresh Page Untuk Memperbarui</p>
             </div>
-
             <div class="container-main px-3 py-3">
                 {{{feedback}}}
             </div>
         </div>
     </div>
-
     <script>
         const feedbackUrl = `${window.location.hostname}/feedback?code={{code}}`
-
-        const qrCode = new QRCodeStyling({
-            width: 180,
-            height: 180,
-            type: "svg",
-            data: feedbackUrl,
-            image: "favicon.svg",
-            dotsOptions: {
-                color: "#0c0605",
-                type: "rounded"
-            },
-            backgroundOptions: {
-                color: "#e4eff8",
-            },
-            imageOptions: {
-                crossOrigin: "anonymous",
-                margin: 5,
-                imageSize: 0.4,
-            }
-        });
-
+        const qrCode = new QRCodeStyling({width: 180, height: 180, type: "svg", data: feedbackUrl, image: "favicon.svg", dotsOptions: {color: "#0c0605", type: "rounded"}, backgroundOptions: { color: "#e4eff8",} imageOptions: { crossOrigin: "anonymous", margin: 5, imageSize: 0.4,}});
         document.getElementById('scroll-container-header').style.top = window.getComputedStyle(document.querySelector('nav.navbar'))['height']
-
-
         qrCode.append(document.getElementById("qr-canvas"));
 
         const qrContainer = document.getElementById('qr-container')
@@ -110,7 +64,6 @@
             }
         })
 
-
         document.querySelector('span.download').addEventListener('click', (e) => {
             qrCode.download({ name: "qr", extension: "svg" });
         });
@@ -123,9 +76,7 @@
                 }, 2500)
             })
         });
-
     </script>
-    <script src="script.js"></script>
+{{{script}}}
 </body>
-
 </html>

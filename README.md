@@ -4,7 +4,7 @@ Platform web untuk menerima dan mengelola **feedback** dari audience secara **an
 
 ---
 
-##  Fitur Utama
+## Fitur Utama
 
 - Kirim feedback Untuk Acara Secara Anonim
 - Dukungan multi-konferensi
@@ -12,12 +12,14 @@ Platform web untuk menerima dan mengelola **feedback** dari audience secara **an
 
 ---
 
-##  Peran Pengguna
+## Peran Pengguna
 
 ### Audience
+
 - Kirim feedback (anonim / dengan nama)
 
 ### Panitia/Admin
+
 - Buat dan kelola konferensi
 - Lihat semua feedback via dashboard admin
 
@@ -26,20 +28,23 @@ Platform web untuk menerima dan mengelola **feedback** dari audience secara **an
 ## Langkah langkah setup
 
 Clone Repositori ini
+
 ```bash
 git clone https://github.com/adeak-bar25/AnnonFeed
 cd AnnonFeed
 ```
+
 Lakukan installasi dan jalankan pada npm
+
 ```bash
 npm install
 npm start
 
 ```
 
-##  Teknologi
+## Teknologi
 
 - **Backend**: Node.js + Express
 - **Template Engine**: HBS (Handlebars)
-- **Database**: File JSON 
-- **Frontend**: HTML + CSS + JavaScript
+- **Database**: File JSON
+- **Frontend**: HTML + TailwindCSS + JavaScript

@@ -123,7 +123,10 @@ app.post('/feedback/send', (req, res) => {
 
 })
 
-app.use((req, res) => res.status(404).render('404'));
+app.use((req, res) => {
+    res.status(404)
+    generate.webPage(res, "notfound", "Halaman Tidak Ditemukan")
+});
 
 
 function htmlEscape(text) {
