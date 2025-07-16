@@ -48,7 +48,7 @@
     </div>
     <script>
         const feedbackUrl = `${window.location.hostname}/feedback?code={{code}}`
-        const qrCode = new QRCodeStyling({width: 180, height: 180, type: "svg", data: feedbackUrl, image: "favicon.svg", dotsOptions: {color: "#0c0605", type: "rounded"}, backgroundOptions: { color: "#e4eff8",} imageOptions: { crossOrigin: "anonymous", margin: 5, imageSize: 0.4,}});
+        const qrCode = new QRCodeStyling({width: 180, height: 180, type: "svg", data: feedbackUrl, image: "favicon.svg", dotsOptions: {color: "#0c0605", type: "rounded"}, backgroundOptions: { color: "#e4eff8"}, imageOptions: { crossOrigin: "anonymous", margin: 5, imageSize: 0.4,}});
         document.getElementById('scroll-container-header').style.top = window.getComputedStyle(document.querySelector('nav.navbar'))['height']
         qrCode.append(document.getElementById("qr-canvas"));
 
