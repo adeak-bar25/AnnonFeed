@@ -26,6 +26,7 @@ Platform web untuk menerima dan mengelola **feedback** dari audience secara **an
 ---
 
 ## Langkah langkah setup
+> Sebelum Menjalankan command dibawah, pastikan anda telah menginstall [Git](https://git-scm.com/downloads) dan [Node.Js](https://nodejs.org/en/download)
 
 Clone Repositori ini
 
