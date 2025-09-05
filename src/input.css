@@ -1,120 +1,109 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import "tailwindcss";
 
 
-@tailwind base;
-@tailwind utilities;
-@tailwind components;
+@theme {
+    --font-sans : "Roboto Flex", "Roboto", "Noto Sans", "Arial", "sans-serif";
+    --color-main-orange : #f36f3b;
+    --color-secondary-orange : #ff8352;
 
+    --breakpoint-xs : 410px;
+
+    --animate-float-f-b : float-f-b 1s ease-out;
+
+    @keyframes float-f-b{
+        0%: { translate: '0 50%'; opacity: '0' }
+        100%: { translate: '0'; opacity: '1' }
+    }
+}
 
 @layer base{
     body{
         @apply font-sans bg-slate-950 text-slate-50 selection:bg-main-orange/70;
     }
-
     /* hide spinner on number input */
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
     }
     input[type=number] {
         -moz-appearance:textfield; /* Firefox */
+        appearance: textfield;
     }
-
     input{
         @apply focus:outline-none bg-transparent border-white border-2 rounded-md;
     }
-
     i {
         font-family: 'bootstrap-icons';
     }
 
 }
-
-@layer utilities{
-    .main-grad{
-        background: linear-gradient(to right, #22110a, #1e1227, #550e7b);
-    }
-
-    
-    .link{
+@utility main-grad{
+    background: linear-gradient(to right, #22110a, #1e1227, #550e7b);
+}   
+@utility link{
         @apply text-secondary-orange hover:underline;
     }
-
-    .flex-col-center{
-        @apply flex flex-col justify-center;
-    }
-
-    .flex-row-center{
-        @apply flex flex-row justify-center;
-    }
-    
-
-    .material-symbols-rounded {
-        font-variation-settings:
+@utility flex-col-center{
+    @apply flex flex-col justify-center;
+}
+@utility flex-row-center{
+    @apply flex flex-row justify-center;
+}
+@utility material-symbols-rounded {
+    font-variation-settings:
         'FILL' 0,
         'wght' 400,
         'GRAD' 0,
-        'opsz' 24
-    }
-
-    .material-symbols-rounded:hover {
-        font-variation-settings:
+        'opsz' 24;
+    @apply hover:material-symbols-rounded-fill;
+}
+@utility material-symbols-rounded-fill {
+    font-variation-settings:
         'FILL' 1,
         'wght' 400,
         'GRAD' 0,
-        'opsz' 24
-    }
-
+        'opsz' 24;
 }
 
-@layer components{
-    .brand{
-        @apply font-sans [&_span:first-child]:text-white font-bold [&_span:last-child]:text-main-orange;
-    }
+/* Component */
+@utility brand{
+    @apply font-sans [&_span:first-child]:text-white font-bold [&_span:last-child]:text-main-orange;
+}
 
-    .main{
-        @apply min-h-dvh [&>*:first-child]:pt-4;
-    }
-    .hamburger-btn{
-        @apply h-fit w-fit [&>*]:block [&>*]:my-[.319rem] [&>*]:border-b-[2.8px] [&>*]:w-5 [&>*]:border-slate-50 scale-110 [&>*]:rounded-sm [&>*]:transition-all [&>*]:duration-500 overflow-hidden;
-    }
-    .hamburger-btn-clicked{
-        @apply [&>span:first-child]:rotate-45 [&>span:first-child]:translate-y-[.37rem] [&>span:nth-child(2)]:-translate-x-[100%] [&>span:nth-child(2)]:opacity-0 [&>span:last-child]:-rotate-45 [&>span:last-child]:-translate-y-[.5rem];
-    }
-    .sidebar-opened{
-        @apply translate-x-0;
-    }
-    .border-sep{
-        @apply border-l border-gray-100;
-    }
-    .btn-main{
-        @apply block mt-4 py-2 px-4 rounded-full bg-main-orange w-max transition-all hover:bg-secondary-orange hover:scale-105;
-    }
-    .btn-main[disabled]{
-        @apply opacity-60 hover:bg-main-orange hover:scale-100;
-    }
-    .btn-square{
-        @apply block py-2 px-4 rounded-md bg-main-orange transition-all hover:bg-secondary-orange;
-    }
-
-    .input-main{
-        @apply px-2 py-2 focus:border-main-orange mt-1 mb-2;
-    }
-
-    .feedback{
-        @apply border-b border-secondary-orange py-1 my-2;
-    }
-
-    .feedback-content{
-        @apply ml-0.5 mb-1;
-    }
-    .feedback-author{
-        @apply inline-flex items-center before:inline-block before:w-4 before:h-4 before:bg-main-orange before:rounded-full before:mr-2;
-    }
-
-    .feedback-author > .author{
-        @apply font-bold ml-1;
-    }
-
+@utility main{
+    @apply min-h-dvh [&>*:first-child]:pt-4;
+}
+@utility hamburger-btn{
+    @apply h-fit w-fit [&>*]:block [&>*]:my-[.319rem] [&>*]:border-b-[2.8px] [&>*]:w-5 [&>*]:border-slate-50 scale-110 [&>*]:rounded-sm [&>*]:transition-all [&>*]:duration-500 overflow-hidden;
+}
+@utility hamburger-btn-clicked{
+    @apply [&>span:first-child]:rotate-45 [&>span:first-child]:translate-y-[.37rem] [&>span:nth-child(2)]:-translate-x-[100%] [&>span:nth-child(2)]:opacity-0 [&>span:last-child]:-rotate-45 [&>span:last-child]:-translate-y-[.5rem];
+}
+@utility sidebar-opened{
+    @apply translate-x-0;
+}
+@utility border-sep{
+    @apply border-l border-gray-100;
+}
+@utility btn-main{
+    @apply block mt-4 py-2 px-4 rounded-full bg-main-orange w-max transition-all hover:bg-secondary-orange hover:scale-105 disabled:!btn-main-disabled;
+}
+@utility btn-main-disabled{
+    @apply opacity-60 hover:bg-main-orange hover:scale-100;
+}
+@utility btn-square{
+    @apply block py-2 px-4 rounded-md bg-main-orange transition-all hover:bg-secondary-orange;
+}
+@utility input-main{
+    @apply px-2 py-2 focus:border-main-orange mt-1 mb-2;
+}
+@utility feedback{
+    @apply border-b border-secondary-orange py-1 my-2;
+}
+@utility feedback-content{
+    @apply ml-0.5 mb-1;
+}
+@utility feedback-author{
+    @apply inline-flex items-center before:inline-block before:w-4 before:h-4 before:bg-main-orange before:rounded-full before:mr-2 [&>.author]:font-bold [&>.author]:ml-1 ;
 }
