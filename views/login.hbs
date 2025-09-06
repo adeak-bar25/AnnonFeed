@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,4 +74,63 @@
     <script src="script.js"></script>
 </body>
 
+=======
+<html lang="id">
+    <head>
+        {{{head}}}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    </head>
+    <body>
+        {{{nav}}}
+        <div class="main md:flex-col-center animate-float-f-b px-6">
+            <div class="mx-auto rounded-lg md:flex md:gap-12 md:bg-gray-800 md:p-6">
+                <div class="self-center">
+                    <h1 class="text-6xl font-bold">Masuk<br />Kembali</h1>
+                    <p class="mt-1 text-lg text-slate-200">*Untuk Panitia</p>
+                </div>
+                <div class="max-md:mt-4">
+                    <form id="log-in" method="post" action="/login" class="flex flex-col md:w-[22rem] lg:w-[26rem]">
+                        {{{error}}}
+                        <label for="event-code">Code Event</label>
+                        <input type="number" required id="event-code" name="code" class="input-main" placeholder="Masukkan Code..." />
+                        <label for="password">
+                            <p>Password</p>
+                            <div class="flex w-full flex-row">
+                                <input type="password" id="password" name="password" class="input-main w-full" placeholder="Masukkan Password Panitia..." />
+                                <span id="see-pass" class="ml-4 -translate-x-[2px] self-center"><i class="bi bi-eye block text-xl"></i></span>
+                            </div>
+                        </label>
+                        <p>Belum Memiliki Sesi? Buat <a href="/new" class="link">Disini!</a></p>
+                        <button disabled type="submit" id="btn" class="btn-main">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{!-- prettier-ignore --}}
+        <script>
+            const button = document.getElementById('btn');
+            const code = document.getElementById('event-code');
+
+            code.addEventListener('input', (e) => {
+              code.value = code.value.slice(0, 6);
+              if (code.value.length !== 6) {
+                button.disabled = true;
+              } else {
+                  button.disabled = false;
+                }
+            });
+            document.getElementById('see-pass').addEventListener('click', function () {
+              if (this.previousElementSibling.type === 'password') {
+                this.previousElementSibling.type = 'text'
+                this.firstChild.classList.replace('bi-eye', 'bi-eye-slash'
+              )} else {
+                this.previousElementSibling.type = 'password';
+                this.firstChild.classList.replace('bi-eye-slash', 'bi-eye')
+              }
+            });
+        </script>
+        {{{script}}}
+    </body>
+>>>>>>> Stashed changes
 </html>

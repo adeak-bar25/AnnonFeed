@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,4 +54,43 @@
   <script src="script.js"></script>
 </body>
 
+=======
+<html lang="id">
+    <head>
+        {{{head}}}
+    </head>
+    <body id="feedback">
+        {{{nav}}}
+        <div class="main md:flex-col-center animate-float-f-b px-6">
+            <div class="mx-auto rounded-lg md:flex md:w-8/12 md:flex-col md:bg-gray-800 md:p-6">
+                <div class="mb-2">
+                    <h1 class="text-4xl font-bold">Feedback</h1>
+                    <span class="text-xl font-bold">Nama Event :</span>
+                    <span id="event-name" class="ml-1 text-xl">{{eventName}}</span>
+                    <h3 class="mt-1">Berikan masukan tentang event ini!</h3>
+                </div>
+                <form action="/feedback/send" id="feedback-form" method="post" class="flex flex-col">
+                    <label for="name" class="text-lg font-bold">Nama (Kosongkan untuk Anonim) :</label>
+                    <input type=" text" name="name" id="name" class="input-main" placeholder="Anonim" />
+                    <label for="feedbackMessage" class="text-lg font-bold">Masukkan Feedback anda mengenai acara ini!</label>
+                    <textarea required name="feedback" id="feedbackMessage" class="resize-none rounded-md border-2 border-slate-50 bg-transparent p-2 focus:outline-none" rows="5" placeholder="Masukkan feedback minimal 8 karakter!"></textarea>
+                    <button disabled type="submit" id="submit-bt" class="btn-main">Kirim</button>
+                </form>
+            </div>
+        </div>
+        {{!-- prettier-ignore --}}
+        <script>
+            const feedbackMessage = document.getElementById('feedbackMessage');
+            const button = document.querySelector('button#submit-bt');
+            const form = document.querySelector('form#feedback-form');
+
+            form.setAttribute('action', `/feedback/send/${window.location.search}`);
+
+            feedbackMessage.addEventListener('input', (e) => {
+              if (feedbackMessage.value.length < 8) return button.disabled = true;
+              button.disabled = false;
+            });
+        </script>
+    </body>
+>>>>>>> Stashed changes
 </html>

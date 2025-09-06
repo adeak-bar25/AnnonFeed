@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,4 +85,72 @@
     <script src="script.js"></script>
 </body>
 
+=======
+<html lang="id">
+    <head>
+        {{{head}}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    </head>
+    <body>
+        {{{nav}}}
+        <div class="main md:flex-col-center animate-float-f-b px-6">
+            <div class="mx-auto rounded-lg md:flex md:gap-12 md:bg-gray-800 md:p-6">
+                <div class="self-center">
+                    <h1 class="text-6xl font-bold">Buat<br /> Sesi Baru</h1>
+                    <p class="mt-1 text-lg text-slate-200">*Untuk Panitia</p>
+                </div>
+                <div>
+                    <form id="sign-up" method="post" action="/new" class="flex flex-col md:w-[22rem] lg:w-[26rem]">
+                        <p class="mt-2 mb-3 text-lg font-medium md:mb-1">Buat sesi baru untuk event anda!</p>
+                        <label for="event-name">Nama Event</label>
+                        <input type="text" required id="event-name" name="eventName" class="input-main" placeholder="Workshop..." />
+                        <label for="password">
+                            <p>Buat Password</p>
+                            <div class="flex w-full flex-row">
+                                <input type="password" required id="password" name="password" class="input-main w-full" placeholder="Masukkan password..." />
+                                <span class="see-pass ml-4 -translate-x-[2px] self-center"><i class="bi bi-eye block text-xl"></i></span>
+                            </div>
+                        </label>
+                        <label for="conf-pass">
+                            <p>Konfirmasi Password</p>
+                            <div class="flex w-full flex-row">
+                                <input type="password" required id="conf-pass" class="input-main w-full" placeholder="Konfirmasi Password" />
+                                <span class="see-pass ml-4 -translate-x-[2px] self-center"><i class="bi bi-eye block text-xl"></i></span>
+                            </div>
+                        </label>
+                        <p id="info" class="mb-2 hidden text-red-500">Password tidak sama!</p>
+                        <p>Sudah Membuat Sesi? Login <a href="/login" class="link">Disini!</a></p>
+                        <button disabled type="submit" class="btn-main">Buat Sesi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{!-- prettier-ignore --}}
+        <script>
+            const form = document.getElementById('sign-up');
+            const button = document.querySelector('form > button');
+            form.elements['conf-pass'].addEventListener('input', (e) => {
+              if (form.elements['password'].value !== form.elements['conf-pass'].value) {
+                button.disabled = true;
+                document.getElementById('info').style.display = 'block';
+              } else {
+                button.disabled = false;
+                document.getElementById('info').style.display = 'none';
+              }
+            });
+
+            document.querySelectorAll('.see-pass').forEach(btn => {
+              btn.addEventListener('click', function (){
+                if (this.previousElementSibling.type === 'password') {
+                  this.previousElementSibling.type = 'text';
+                  this.firstChild.classList.replace('bi-eye', 'bi-eye-slash');
+                } else {
+                  this.previousElementSibling.type = 'password';
+                  this.firstChild.classList.replace('bi-eye-slash', 'bi-eye')
+                }
+              });
+            });
+        </script>
+    </body>
+>>>>>>> Stashed changes
 </html>

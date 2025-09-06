@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:mod/generate.js
 const fs = require('fs');
 const getEvent = require('./getEvent')
 const bcrypt = require('bcrypt');
@@ -51,6 +52,32 @@ const generate = {
     },
     navHtml: function (pageTitle) {
         return `<nav class="navbar main-grad text-white flex flex-row items-center pl-2 gap-3 fixed inset-x-0 justify-between z-50">
+=======
+export const errorElm = (errormessage) => {
+    return `<div class="error flex gap-2 bg-red-500/40 p-2 rounded-md my-2"> <span style="color: #ea3323;" class="material-symbols-outlined">info</span><p>${errormessage}</p></div>`;
+};
+
+export const eventFeedbackElm = (feedback, author) => {
+    return `<div class="feedback"><div class="feedback-content">${feedback}</div><div class="feedback-author ">Ditulis Oleh <span class="author">${author}</span></div></div>`;
+};
+
+export const headHtml = (pageTitle) => {
+    return `    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="css/style.css">
+                    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+                    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+                    <link rel="shortcut icon" href="/favicon.ico" />
+                    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+                    <link rel="manifest" href="/site.webmanifest" />
+                    <script src="script.js" defer></script>
+                    <title>${pageTitle} | AnnonFeed</title>`;
+};
+
+export const navBarElm = function (pageTitle) {
+    return `<nav class="navbar main-grad text-white flex flex-row items-center pl-2 gap-3 fixed inset-x-0 justify-between z-50">
+>>>>>>> Stashed changes:views/utils/layout.js
         <div id="title" class="brand flex items-center gap-3">
             <div id="menu" class="h-fit">
                 <div id="hamburger-btn" class="hamburger-btn lg:hidden hover:bg-slate-100/15 px-1 rounded-sm">
@@ -63,7 +90,11 @@ const generate = {
                         <ul>
                             <li><a href="/">Home</a></li>
                             <li><a href="/Help">Bantuan</a></li>
+<<<<<<< Updated upstream:mod/generate.js
                         </ul> 
+=======
+                        </ul>
+>>>>>>> Stashed changes:views/utils/layout.js
                         <ul>
                             <li class=""><a href="/login">Login</a></li>
                             <li class=""><a href="/new">Buat Sesi Baru</a></li>
@@ -85,20 +116,34 @@ const generate = {
                         <li><a href="/new">Buat Sesi Baru</a></li>
                         <li><a href="join">Masukkan Code</a></li>
                     </ul>
+<<<<<<< Updated upstream:mod/generate.js
                 </div> 
             </div>
         </div>
         
         
+=======
+                </div>
+            </div>
+        </div>
+
+
+>>>>>>> Stashed changes:views/utils/layout.js
         <div class=" pl-5 px-2 h-full flex items-center gap-3.5 pr-3">
             <a href="/login" class="hover:text-slate-50/70 hover:underline hidden md:block">Login</a>
             <a href="/new" class="text-md py-1.5 px-2.5 rounded-[5px] border-2 border-gray-100 text-slate-50 my-3 hover:border-gray-50/70 hover:text-gray-50/70 hidden md:block">Buat Sesi Baru</a>
             <div class="border-sep h-12"></div>
             <a href="/join" class="text-md py-1.5 px-2.5 rounded-[5px] border-2 border-gray-100 text-slate-50 my-3 hover:border-gray-50/70 hover:text-gray-50/70 max-xs:text-xs">Masukkan Kode</a>
         </div>
+<<<<<<< Updated upstream:mod/generate.js
         
     </nav>`
     }
 }
 
 module.exports = generate
+=======
+
+    </nav>`;
+};
+>>>>>>> Stashed changes:views/utils/layout.js
