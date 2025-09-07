@@ -1,8 +1,6 @@
 import Mongoose from "mongoose";
 import { generateEventCode, generateUUID, generatePasswordHash } from "../controllers/utils/generate.js";
 
-Mongoose.connect("mongodb://localhost:27017/annonfeed");
-
 const FeedbackSchema = new Mongoose.Schema(
     {
         feedback: {
@@ -84,6 +82,10 @@ EventSchema.statics.validateAccessCode = async function (accessCode) {
     }
     return true;
 };
+
+EventSchema.statics.getInfoByAccessCode = function(accessCode){
+  return this.findOne({ accessCode }).select("-_id -__v -password -accessCode").exec();
+}
 
 EventSchema.pre("save", async function (next) {
     this.password = await generatePasswordHash(this.password);
