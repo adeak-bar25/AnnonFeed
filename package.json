@@ -5,21 +5,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./public/css/style.css --watch --minify",
-    "dev": "concurrently \"nodemon app.js\" \"npm run build:css\""
+    "build:css": "pnpm dlx @tailwindcss/cli -i ./src/input.css -o ./public/css/style.css --watch --minify",
+    "dev": "concurrently \"nodemon app.js\" \"pnpm run build:css\""
   },
   "author": "Ade Akbar Magri Dinata",
   "type": "module",
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "hbs": "^4.2.0",
     "json": "^11.0.0",
     "mongoose": "^8.18.0",
+    "morgan": "^1.10.1",
     "validator": "^13.15.15"
   },
   "devDependencies": {

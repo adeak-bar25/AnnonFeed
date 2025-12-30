@@ -1,5 +1,6 @@
 import { generateEventCode } from "./utils/generate.js";
 import EventModel from "../models/data.js";
+import writeAccessCookie from "./utils/writeAccessCookie.js";
 
 // res.clearCookie("code");
 // res.clearCookie("access");
@@ -17,23 +18,16 @@ import EventModel from "../models/data.js";
 // res.cookie("access", accessCode, { maxAge: 86400000, httpOnly: true });
 // res.redirect(`/dashboard?code=${code}`);
 
+// Add New Event to db, set new cookie to client, redirect client to dashboard
+
 export default async function (req, res, next) {
     try {
-        const { accessCode, code } = await EventModel.createNewEvent(req.body.eventName, req.body.password);
+        const { accessCode } = await EventModel.createNewEvent(req.body.eventName, req.body.password);
+        writeAccessCookie(res, accessCode);
+        // res.cookie("accessCode", accessCode, { maxAge: 86400000, httpOnly: true });
         res.redirect(`/dashboard`);
-        console.log(accessCode, code);
     } catch (err) {
         console.error(err);
         // next(err);
     }
-}
-
-function setCookie(res, obj) {
-    Object.values(obj).forEach((c) => {
-        res.cookie(c === obj.code ? "code" : "accessCode", c, {
-            maxAge: 1000 * 60 * 60 * 24 * 5,
-            httpOnly: true,
-            sameSite: true
-        });
-    });
 }

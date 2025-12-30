@@ -1,11 +1,11 @@
 <html lang="id">
     <head>
-        {{{head}}}
+        {{> headHtml title=pageTitle}}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
     </head>
     <body>
-        {{{nav}}}
+        {{> navbar title=pageTitle}}
         <div class="main md:flex-col-center animate-float-f-b px-6">
             <div class="mx-auto rounded-lg md:flex md:gap-12 md:bg-gray-800 md:p-6">
                 <div class="self-center">
@@ -36,21 +36,21 @@
             const code = document.getElementById('event-code');
 
             code.addEventListener('input', (e) => {
-              code.value = code.value.slice(0, 6);
-              if (code.value.length !== 6) {
-                button.disabled = true;
-              } else {
-                  button.disabled = false;
+                code.value = code.value.slice(0, 6);
+                if (code.value.length !== 6) {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
                 }
             });
             document.getElementById('see-pass').addEventListener('click', function () {
-              if (this.previousElementSibling.type === 'password') {
-                this.previousElementSibling.type = 'text'
-                this.firstChild.classList.replace('bi-eye', 'bi-eye-slash'
-              )} else {
-                this.previousElementSibling.type = 'password';
-                this.firstChild.classList.replace('bi-eye-slash', 'bi-eye')
-              }
+                if (this.previousElementSibling.type === 'password') {
+                    this.previousElementSibling.type = 'text'
+                    this.firstChild.classList.replace('bi-eye', 'bi-eye-slash'
+                )} else {
+                    this.previousElementSibling.type = 'password';
+                    this.firstChild.classList.replace('bi-eye-slash', 'bi-eye')
+                }
             });
         </script>
         {{{script}}}

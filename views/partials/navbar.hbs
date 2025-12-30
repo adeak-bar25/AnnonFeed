@@ -1,0 +1,50 @@
+<nav class="navbar main-grad fixed inset-x-0 z-50 flex flex-row items-center justify-between gap-3 pl-2 text-white">
+    <div id="title" class="brand flex items-center gap-3">
+        <div id="menu" class="h-fit">
+            <div id="hamburger-btn" class="hamburger-btn rounded-sm px-1 hover:bg-slate-100/15 lg:hidden">
+                <span class=""></span>
+                <span class=""></span>
+                <span class=""></span>
+            </div>
+            <div id="hider" class="fixed inset-x-0 bottom-0 hidden bg-slate-950/45">
+                <ul
+                    id="sidebar"
+                    class="[&_a:hover]:bg-secondary-orange/20 fixed right-0 left-0 h-dvh w-[60%] -translate-x-full rounded-r-lg bg-[#6e3f2c] transition-all sm:w-1/2 md:w-2/5 [&_a]:block [&_a]:w-[98%] [&_a]:rounded-r-full [&_a]:py-3 [&_a]:pl-3 [&_li]:text-lg [&_li:first-child]:mt-2 [&_li:not(:first-child)]:my-2"
+                >
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/Help">Bantuan</a></li>
+                    </ul>
+                    <ul>
+                        <li class=""><a href="/login">Login</a></li>
+                        <li class=""><a href="/new">Buat Sesi Baru</a></li>
+                        <li><a href="/join">Masukkan Code</a></li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <h2 class="logo brand cursor-pointer text-[1.6rem] select-none"><span>Annon</span><span>Feed</span></h2>
+        <div class="border-sep hidden h-8 lg:block"></div>
+        <div class="group relative hidden cursor-pointer items-center pr-3 text-base font-normal text-gray-300 hover:text-white lg:block [&>div]:hover:border-white">
+            <span>{{title}}</span>
+            <div id="arrow" class="ml-2 inline-block h-2 w-2 -translate-y-0.5 rotate-45 border-r border-b border-gray-300 transition-transform group-hover:translate-y-[0.18rem]"></div>
+            <div id="drop-nav" class="absolute -bottom-[11.6rem] hidden w-max rounded-md bg-slate-800 py-3 text-slate-50 group-hover:block">
+                <ul class="[&_a]:block [&_a]:w-full [&_a]:pr-8 [&_a]:pl-3 [&>li]:py-1 [&>li:hover]:bg-slate-50/30">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/help">Bantuan</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/new">Buat Sesi Baru</a></li>
+                    <li><a href="join">Masukkan Code</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex h-full items-center gap-3.5 px-2 pr-3 pl-5">
+        <a href="/login" class="hidden hover:text-slate-50/70 hover:underline md:block">Login</a>
+        <a href="/new" class="text-md my-3 hidden rounded-[5px] border-2 border-gray-100 px-2.5 py-1.5 text-slate-50 hover:border-gray-50/70 hover:text-gray-50/70 md:block">Buat Sesi Baru</a>
+        <div class="border-sep h-12"></div>
+        <a href="/join" class="text-md max-xs:text-xs my-3 rounded-[5px] border-2 border-gray-100 px-2.5 py-1.5 text-slate-50 hover:border-gray-50/70 hover:text-gray-50/70">Masukkan Kode</a>
+    </div>
+
+</nav>

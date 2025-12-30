@@ -1,5 +1,6 @@
 import Mongoose from "mongoose";
 import { generateEventCode, generateUUID, generatePasswordHash } from "../controllers/utils/generate.js";
+import feedback from "../controllers/feedback.js";
 
 const FeedbackSchema = new Mongoose.Schema(
     {
@@ -56,8 +57,8 @@ EventSchema.statics.createNewEvent = async function (eventName, password) {
     return event;
 };
 
-EventSchema.statics.insertNewFeedback = async function (code, feedbackObj) {
-    return this.findOneAndUpdate({ code }, { $push: { feedbacks: feedbackObj } });
+EventSchema.statics.insertNewFeedback = async function (code, feedback, author) {
+    return this.updateOne({ code }, { $push: { feedbacks: { feedback, author } } });
 };
 
 EventSchema.statics.getAllFeedback = async function (code, accessCode) {
@@ -83,28 +84,29 @@ EventSchema.statics.validateAccessCode = async function (accessCode) {
     return true;
 };
 
-EventSchema.statics.getInfoByAccessCode = function(accessCode){
-  return this.findOne({ accessCode }).select("-_id -__v -password -accessCode").exec();
-}
+EventSchema.statics.getInfoByAccessCode = function (accessCode) {
+    return this.findOne({ accessCode }).select("-_id -__v").exec();
+};
+
+EventSchema.statics.getInfoByEventCode = function (code) {
+    return this.findOne({ code }).select("-_id -__v").exec();
+};
+
+EventSchema.statics.generateNewAccessCode = async function (code) {
+    const newAccessCode = generateUUID();
+    const result = await this.updateOne({ code }, { $set: { accessCode: newAccessCode } });
+    if (result.modifiedCount > 0) {
+        return newAccessCode;
+    } else {
+        return null;
+    }
+};
 
 EventSchema.pre("save", async function (next) {
     this.password = await generatePasswordHash(this.password);
     this.code = generateEventCode(await DataModel.getAllEventCode());
     next();
 });
-
-// setTimeout(async () => {
-//     const a = DataModel.create({
-//         eventName: "Event Name",
-//         password: "passwordHash"
-//     });
-//     // const a = DataModel.insertNewFeedback(522349, { feedback: "Test feedback", author: "Ade Akbar" });
-
-//     // const a = DataModel.getAllFeedback(522449, "3ebbb259-22ab-48b3-8ea7-02dafe36abd9");
-
-//     // const a = await DataModel.getAllEventCode();
-//     console.log(await a);
-// }, 300);
 
 const DataModel = Mongoose.model("Event", EventSchema);
 

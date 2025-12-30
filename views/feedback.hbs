@@ -1,9 +1,9 @@
 <html lang="id">
     <head>
-        {{{head}}}
+        {{> headHtml title=pageTitle}}
     </head>
     <body id="feedback">
-        {{{nav}}}
+        {{> navbar title=pageTitle}}
         <div class="main md:flex-col-center animate-float-f-b px-6">
             <div class="mx-auto rounded-lg md:flex md:w-8/12 md:flex-col md:bg-gray-800 md:p-6">
                 <div class="mb-2">
@@ -30,8 +30,8 @@
             form.setAttribute('action', `/feedback/send/${window.location.search}`);
 
             feedbackMessage.addEventListener('input', (e) => {
-              if (feedbackMessage.value.length < 8) return button.disabled = true;
-              button.disabled = false;
+                if (feedbackMessage.value.length < 8) return button.disabled = true;
+                button.disabled = false;
             });
         </script>
     </body>
