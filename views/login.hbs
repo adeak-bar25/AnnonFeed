@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="id">
     <head>
         {{> headHtml title=pageTitle}}
@@ -13,7 +14,7 @@
                     <p class="mt-1 text-lg text-slate-200">*Untuk Panitia</p>
                 </div>
                 <div class="max-md:mt-4">
-                    <form id="log-in" method="post" action="/login" class="flex flex-col md:w-[22rem] lg:w-[26rem]">
+                    <form id="log-in" method="post" action="/login" class="flex flex-col md:w-88 lg:w-104">
                         {{{error}}}
                         <label for="event-code">Code Event</label>
                         <input type="number" required id="event-code" name="code" class="input-main" placeholder="Masukkan Code..." />
@@ -21,7 +22,7 @@
                             <p>Password</p>
                             <div class="flex w-full flex-row">
                                 <input type="password" id="password" name="password" class="input-main w-full" placeholder="Masukkan Password Panitia..." />
-                                <span id="see-pass" class="ml-4 -translate-x-[2px] self-center"><i class="bi bi-eye block text-xl"></i></span>
+                                <span id="see-pass" class="ml-4 -translate-x-0.5 self-center"><i class="bi bi-eye block text-xl"></i></span>
                             </div>
                         </label>
                         <p>Belum Memiliki Sesi? Buat <a href="/new" class="link">Disini!</a></p>
