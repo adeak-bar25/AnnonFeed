@@ -15,7 +15,6 @@ hidder.style.top = navBarHeight;
 
 hamburgerBtn.addEventListener("click", (e) => {
     hidder.classList.toggle("hidden");
-    console.log(this);
     hamburgerBtn.classList.toggle("hamburger-btn-clicked");
     setTimeout(() => {
         sidebar.classList.toggle("sidebar-opened");

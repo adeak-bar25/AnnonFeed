@@ -4,9 +4,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "node --env-file=.env app.js",
     "build:css": "pnpm dlx @tailwindcss/cli -i ./src/input.css -o ./public/css/style.css --watch --minify",
-    "dev": "concurrently \"nodemon app.js\" \"pnpm run build:css\""
+    "dev": "concurrently \"nodemon --env-file=.env app.js\" \"pnpm run build:css\""
   },
   "author": "Ade Akbar Magri Dinata",
   "type": "module",
@@ -14,8 +14,8 @@
   "description": "",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",
-    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "hbs": "^4.2.0",
     "json": "^11.0.0",

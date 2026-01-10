@@ -23,7 +23,6 @@ export const generateEventFeedback = (name, feedback) => {
 
 export const generateEventCode = function (existingCodes = []) {
     const generateCode = () => Math.floor(100000 + Math.random() * 900000);
-    console.log(existingCodes);
     let generatedCode;
     do {
         generatedCode = generateCode();
